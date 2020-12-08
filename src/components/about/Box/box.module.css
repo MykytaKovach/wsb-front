@@ -1,0 +1,19 @@
+.Box{
+    text-align: center;
+    padding:10px;
+    margin-top:20px;
+    width:30%;
+  }
+
+  .Box i{
+      font-size:60px;
+  }
+  .Box h3 {
+      margin-top:8px;
+  }
+  @media(max-width:500px){
+      .Box{
+          width:80%;
+          margin:20px auto 0 auto;
+      }
+  }

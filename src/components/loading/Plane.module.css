@@ -1,0 +1,41 @@
+.Body{
+	position:fixed;
+	top:0;
+	width:100%;
+	height: 100vh;
+	display:flex;
+	align-items: center;
+	z-index:99999;
+	background: rgba(213, 228, 228, 0.5);
+	overflow: hidden;
+}
+
+.Body i{
+	
+	color: white;
+	font-size:40px;
+	animation-name: fly;
+	position:absolute;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+
+}
+
+
+@media(max-width:500px){
+	.Body i{
+		animation-duration:2s !important;
+	}
+}
+
+
+
+@keyframes fly {
+    0%   {left: -40px;font-size:40px;}
+    
+    50%  {left: 45%;font-size:100px;color:#4dbedf}
+  
+    100% {left: calc(100% - 45px);font-size:40px;color:#e3fdfd;}
+}
+

@@ -1,0 +1,30 @@
+.Weather{
+    width:100%;
+    border:1px solid gray;
+    text-align: start;
+    display: flex;
+    display:flex;
+    
+    
+}
+.Weather div{
+    width:50%;
+}
+.Town{
+    font-size:18px;
+}
+
+.Weather * {
+    color:black;
+    margin-top:5px;
+    margin-left:5px;
+    
+}
+
+
+
+@media(min-width:450px){
+    .Weather{
+        width:100%;
+    }
+}

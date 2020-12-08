@@ -1,0 +1,65 @@
+.Trip{
+    width:100%;
+    
+}
+.Trip hr{
+    border-top:2px solid 	#fdc4b6;
+}
+
+.Flights *{
+    margin:10px 10px 0 0 ;
+}
+
+
+.Flights{
+    display: flex;
+    width:100%;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.Date{
+    margin-bottom: -10px;
+    color:grey;
+    font-size:15px;
+}
+.OneWay{
+    display:flex;
+    margin:none;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.OneWay *{
+    margin-left:5px;
+}
+.OneWay p {
+    font-size:18px;
+}
+.Name{
+    
+    text-align: start;
+    margin-bottom: -20px;
+    font-size:15px;
+    
+}
+    .Dates{
+        display:flex;
+        flex-wrap:wrap
+    }
+.Sum{
+    display: flex;
+    align-items: center;
+}
+.Sum i {
+    font-size:18px;
+}
+.Paragraph i {
+    color:#19abc9;
+}
+
+@media(max-width:500px){
+    .Flights{
+        flex-flow:column;
+        align-items: flex-start;
+    }
+}

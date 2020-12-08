@@ -1,0 +1,79 @@
+.Body{
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    
+    align-items: center;
+    justify-content:center;
+    overflow-x: hidden;
+    
+    width:100vw;
+    height: 100vh;
+    background: url('../../assets/img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+.Body{
+    transition:1s
+}
+.Content{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    width: 100%;
+    max-width: 800px;
+}
+.Text{
+    width:50%;
+    color:white;
+}
+.Form{
+    width:50%;
+    flex-flow: column;
+    display: flex;
+    color:white;
+    
+}
+.Form p{
+    margin-top:8px;
+}
+
+.Form form{
+    color:black;
+    padding: 10px;
+    background: rgb(227,253,253,0.5);
+    border:#a6e3e9;
+    display: flex;
+    flex-flow: column;
+    
+    
+}
+.Form form label{
+    float:left;
+}
+.Link{
+    text-decoration:underline;
+    color:#ea7070;
+    cursor:pointer;
+}
+.SomeDiv{
+    display: flex;
+}
+.SomeDiv hr{
+    border-top: 3px solid white;
+    width:40%;
+}
+
+
+
+@media (max-width:500px){
+    .Content{
+        flex-flow:column;
+    }
+    .Form{
+        width:80%
+    }
+}

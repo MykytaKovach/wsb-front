@@ -1,0 +1,82 @@
+.Box {
+    top:3vh;
+    position:relative;
+    display:flex;
+    flex-flow: column;
+    align-items: flex-start;
+    width:100%;
+    max-width: 800px;
+    background: #F9F9F9;
+  padding: 25px;
+  margin: 10px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  transition: 0.5s;
+  
+
+}
+
+.Button{
+    position:fixed;
+    top:90%;
+    left:80%;
+    background: #ea7070;
+    border-radius:50%;
+    cursor:pointer;
+}
+.Button:hover{
+    background: #e59572;
+
+}
+.Button i{
+    padding:15px 15px;
+    color:white;
+    font-size:20px;
+    
+}
+
+.Paginate{
+    display: flex;
+    align-items: center;
+    width:100%;
+    justify-content: space-evenly;
+    padding-bottom: 20px;
+    border-bottom:2px solid#fdc4b6;
+}
+.Paginate i{
+    font-size:25px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+.Paginate i:hover{
+    color:#2694ab;
+}
+.Home hr{
+    border-top:2px solid#fdc4b6;
+}
+.Title{
+    font-weight:bold;
+    font-size:40px;
+    margin-top:40px;
+    margin-bottom:5px;
+    color:	#f3dfd9;
+}
+.Home{
+    margin: auto;
+    width:100%;
+    background:url('../../assets/img/Plane.jpg');
+    background-attachment: fixed;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 110vh;
+    display:flex;
+    align-items: center;
+    flex-flow:column;
+}
+
+@media(min-width:500px){
+    .Button i{
+        padding:15px 15px;
+        color:white;
+        font-size:30px;
+    }}

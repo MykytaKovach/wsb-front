@@ -1,0 +1,96 @@
+
+.Form *{
+    margin-top:10px;
+   
+}
+.Title{
+    font-weight:bold;
+    font-size:40px;
+    margin-top:40px;
+    margin-bottom:5px;
+    color:	#f3dfd9;
+}
+.Forms{
+    margin: auto;
+    width:100%;
+    background:url('../../assets/img/Plane.jpg');
+    background-attachment: fixed;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height:90vh;
+    display:flex;
+    align-items: center;
+    flex-flow:column;
+    
+}
+.Paragraph{
+    font-size:18px;
+    margin:15px 0 -10px 0 ;
+}
+.Button{
+    width:100%;
+     background : #2694ab;
+    border:#1a778a
+}
+.Button:hover{
+    background : #4dbedf;
+}
+
+
+.Inputs{
+    background-color:white;
+    
+    display:flex;
+    justify-content: center;
+    border:1px gray solid;
+    align-items: center;
+    
+}
+
+  
+.Inputs input{
+    height:40px;
+    border:none;
+    width:49%;
+    background:none;
+    text-align:center;
+    outline:none;
+    cursor: pointer;
+}
+
+.Form{
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+    width:80%;
+    max-width: 450px;
+    background: #F9F9F9;
+  padding: 25px;
+  margin: 10px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  transition: 0.5s;
+  
+}
+.Weather{
+    display:flex;
+    flex-flow:column;
+    justify-content: space-between;
+    width:100%;
+}
+
+.Inputs i{
+    font-size:20px;
+}
+
+@media(max-width:500px){
+    .Form{
+        width:100%;
+    }
+    .Forms{
+        background-attachment:fixed;
+    background-size:cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    }
+}

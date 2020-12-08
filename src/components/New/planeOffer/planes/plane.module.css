@@ -1,0 +1,26 @@
+.Box{
+    width:100%;
+    display:flex;
+    font-weight:bold;
+    height: 30px;
+}
+.Box div{
+    display:flex;
+    align-items: center;
+    margin-left:10px;
+    margin-top:5px;
+}
+.Box div div{
+    text-align:start;
+    margin-left:10px;
+}
+.Box i {
+    font-size:20px;
+    color:	#2694ab;
+}
+
+.Date{
+    font-size:10px;
+    
+    color:gray;
+}

@@ -1,0 +1,102 @@
+.Box {
+        top:3vh;
+        position:relative;
+        display:flex;
+        flex-flow: column;
+        align-items: flex-start;
+        width:100%;
+        max-width: 800px;
+        background: #F9F9F9;
+      padding: 25px;
+      margin: 10px 0;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      transition: 0.5s;
+      
+    
+}
+.Box :first-child{
+    display:flex;
+}
+.Personal{
+    min-width:150px;
+    margin-left:10px;
+    text-align: left;
+}
+.Box form{
+    display: flex;
+    flex-flow:column;
+    width:30vw;
+    max-width:300px;
+}
+.Box form label{
+    display:flex;
+    align-items: center;
+    margin-top:10px;
+    margin-bottom:2px;
+    
+}
+.Box form label i {
+   margin-right:5px;
+    
+}
+.Box form input{
+    width:100%;
+    border:none;
+    background:none;
+    border-bottom: 3px #4dbedf solid;
+
+    
+}
+.Box hr{
+    border:2px solid #4dbedf;
+    width:100%;
+}
+.Me{
+    margin: auto;
+    width:100%;
+    background:url('../../assets/img/Plane.jpg');
+    background-attachment: fixed;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height:90vh;
+    display:flex;
+    align-items: center;
+    flex-flow:column;
+}
+.Avatar{
+    width:200px;
+    height: 200px;
+    background-size: cover !important;
+    background-position: center !important;
+    
+}
+.Button{
+    width:100%;
+     background : #2694ab;
+     margin-top:10px;
+    border:#1a778a
+}
+.Button:hover{
+    background : #4dbedf;
+}
+.Buttond{
+    width:100%;
+     background : #ea7070;
+     margin-top:10px;
+    border:#f05454;
+}
+.Buttond:hover{
+    background: #eb4646
+}
+
+
+@media(max-width:500px){
+    .Avatar{
+        width:125px;
+        height: 125px;
+    }
+    .Box form{
+        width:100%;
+    }
+}

@@ -1,0 +1,134 @@
+
+  
+  /* Header **/
+  .Header{
+    background:#2694ab;
+    color:#ffffff;
+    border-bottom:#ea7070 3px solid;
+    display:flex;
+    justify-content: center;
+    
+  }
+  
+.Header a,.Header p{
+    color:#ffffff;
+    text-decoration:none;
+    text-transform: uppercase;
+    font-size:16px;
+    font-weight:bold;
+    cursor: pointer;
+  }
+  .Header ul{
+      display:flex;
+      list-style: none;
+  }
+  .Header li{
+    padding: 0 20px 0 20px;
+  }
+  .Header li a, .Header li p{
+      padding-bottom:6px;
+  }
+  .OpenSlide i{
+      font-size:30px;
+  }
+  .Header .Branding{
+    float:left;
+  }
+  
+  .Header .Branding h1{
+    margin:0;
+  }
+  
+  .Header nav{
+    float:right;
+    margin-top:10px;
+    
+  }
+  
+  .Heading{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    height: 10vh;
+    width:85%;
+  
+  }
+  
+  .Header .Highlight{
+    color:#ea7070;
+    
+    
+  }
+  
+  
+  
+  
+  .SideNav{
+    height:100%;
+    width:0;
+    position:fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    background-color:#111;
+    opacity:0.9;
+    overflow-x:hidden;
+    padding-top:60px;
+    transition:0.5s;
+  }
+  
+  .SideNav p, .SideNav a{
+    padding:10px 10px 10px 30px;
+    text-decoration:none;
+    font-size:22px;
+    color:#ccc;
+    display:block;
+    transition:0.3s;
+  }
+  
+  
+  
+  .SideNav .BtnClose{
+    position:absolute;
+    top:0;
+    right:22px;
+    font-size:36px;
+    margin-left:50px;
+  }
+
+   .Active{
+    
+        color:#ea7070 !important;
+      
+  }
+  
+  
+  /* Media Queries */
+  
+  
+  @media(max-width:568px){
+    .NavbarNav{display:none !important}
+    nav{
+      width:50px;
+    }
+    
+    .Branding{
+        font-size:10px;
+      }
+    
+  }
+  
+  @media(min-width:568px){
+    .OpenSlide{display:none}
+    .Header a:hover,
+    .Header p:hover{
+        color:#ea7070;
+        font-weight:bold;
+        border-bottom:3px solid #ea7070;
+      }
+  }
+  @media(max-height:600px){
+    .Heading{
+      align-items: baseline;
+    }
+  }

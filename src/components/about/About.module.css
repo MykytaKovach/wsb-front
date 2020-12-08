@@ -1,0 +1,44 @@
+.ShowCase{
+    min-height:400px;
+    background:url('../../assets/img/showcase.jpg') no-repeat ;
+    background-position: center;
+    background-size:cover;
+    text-align:center;
+    color:	#ea7070;
+  }
+  
+  .ShowCase h1{
+    padding-top:150px;
+    font-size:55px;
+    margin-bottom:10px;
+  }
+  
+  .ShowCase p{
+    font-size:20px;
+  }
+  
+
+  
+  /* Boxes */
+  .Boxes{
+    padding-top:80px;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  @media(max-width:500px){
+    .Boxes{
+        padding-top:10px;
+        flex-flow: column;
+    }
+    .ShowCase{
+        height:90vh;
+    }
+    .ShowCase h1{
+        padding-top:5px;
+    }
+}
+  
+  
+  
+  
