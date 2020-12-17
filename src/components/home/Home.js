@@ -10,50 +10,33 @@ class Home extends Component {
     //puste danne 
     state={
         trips:undefined,
-        links:undefined,
-        meta:undefined,
         loading:true
 
     }
     componentDidMount(){
         
-        Axios.get('https://kovach-db-wsb.herokuapp.com/public/api/trips')
+        Axios.get('https://wsb-backend.herokuapp.com/trips',{
+            headers:{
+                'Authorization': 'Bearer ' +localStorage.getItem("token")
+            }
+        })
         .then(res=>{
+            console.log(res.data)
             this.setState(
                 {
-                    trips:res.data.data,
-                    links:res.data.links,
-                    meta:res.data.meta,
+                    trips:res.data,
                     loading:false
                 })
             
         }).catch(er=>console.log(er))
     }
-    paginatehandler(url){
-        url="https"+ url.slice(4)
-        if (!url) return
-        this.setState({loading:true})
-        Axios.get(url)
-        .then(res=>{
-            this.setState(
-                {
-                trips:res.data.data,
-                links:res.data.links,
-                meta:res.data.meta,
-                loading:false
-            })
-            
-        }).catch(er=>console.log(er))
 
-    }
     render(){
-        let pagination=this.state.meta?this.state.meta.total>1?<div className={styles.Paginate}>
-            <i className="fas fa-arrow-left" onClick={()=>this.paginatehandler(this.state.links.prev?this.state.links.prev:null)}></i> Page {this.state.meta.current_page} of {this.state.meta.last_page} <i className="fas fa-arrow-right" onClick={()=>this.paginatehandler(this.state.links.next?this.state.links.next:null)}></i>
-            
-        </div>:null:null
+        
         let trips = this.state.trips?
         <div>
-            {this.state.trips.map(trip=><Trip flight={trip} key={trip.id}/>)}
+            {this.state.trips.map(trip=>
+            <Trip flight={trip} key={trip.dateStart}/>)}
         </div>:null
         return(
             <Aux>
@@ -62,7 +45,6 @@ class Home extends Component {
             <div className={styles.Home}>
             <p className={styles.Title}>Trips</p> 
             <div className={styles.Box}>
-                {pagination}
                 <hr/>
             {trips}
             </div>

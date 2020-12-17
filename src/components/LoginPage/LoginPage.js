@@ -11,7 +11,11 @@ state={
     loading:false,
     email:'',
     password:'',
-    name:'',
+    firstName:'',
+    lastName:'',
+    companyName:'',
+    role:'',
+    companyAccount:false,
     error:null
 
 }
@@ -19,8 +23,9 @@ state={
 
 
 changeHandler(e){
-        
-  this.setState({[e.target.name]:e.target.value})
+  e.target.type !== "checkbox"? 
+  this.setState({[e.target.name]:e.target.value}):
+  this.setState({[e.target.name]:e.target.checked})
 }
 buttonClickHandler(e){
     e.persist()
@@ -30,7 +35,7 @@ buttonClickHandler(e){
 loginHandler(e){
     e.preventDefault();
     this.setState({loading:true})
-    axios.post('https://kovach-beta-login.herokuapp.com/public/api/login',{
+    axios.post('https://wsb-backend.herokuapp.com/login',{
 
       "email":this.state.email,
       "password":this.state.password
@@ -39,33 +44,51 @@ loginHandler(e){
       if(res.data.error){
        return this.errorHandler(res.data.error)
       }
-      localStorage.setItem('user',JSON.stringify(res))
+      localStorage.setItem('user',JSON.stringify(res.data.user))
+      localStorage.setItem('token',res.data.token)
       this.setState({loading:false})
         this.props.logedIn()
-    })
+    }).catch (er=>{console.log(er.response.data)
+    return this.errorHandler("Something went wrong")})
     
 }
 
 registerHandler(e){
   e.preventDefault()
+  let data={}
   this.setState({loading:true})
-  axios.post('https://kovach-beta-login.herokuapp.com/public/api/user',{
-    id:""+Date.now(),
+ this.state.companyAccount?
+    data = {
     email:this.state.email,
     password:this.state.password,
-    name:this.state.name
-
-  }).then(res=>{
-
-    if(res.data.error){
-      return this.errorHandler(res.data.error)
+    firstName:this.state.firstName,
+    lastName: this.state.lastName,
+    role:this.state.role?"owner":"employee",
+    companyName:this.state.companyName}
+      :
+    data={
+      email:this.state.email,
+      password:this.state.password,
+      firstName:this.state.firstName,
+      lastName: this.state.lastName,
+  
+    }
+  
+  axios.post('https://wsb-backend.herokuapp.com/users',data).then(res=>{
+    console.log(res)
+    if(res.data.errors){
+      return this.errorHandler(res.data.errors.message)
      }
      this.setState({loading:false})
      
-    localStorage.setItem('user',JSON.stringify(res))
+    localStorage.setItem('user',JSON.stringify(res.data.user))
+    localStorage.setItem('token',res.data.token)
     this.props.logedIn()
     
-    }).catch(er=>console.log(er))
+    }).catch(er=>{
+      console.log(er.response.data)
+      return this.errorHandler(er.response.data.message)
+    })
 
 
 }
@@ -106,9 +129,29 @@ render(){
             <h5>Create new Account</h5>
             {<Error msg = {this.state.error} />}
             <div className="form-group">
-          <label >Fill in your full name</label>
-          <input type="text" className="form-control"  name="name"placeholder="John Doh" required onChange={(e)=>this.changeHandler(e)} />
+            <label >Fill in your first name</label>
+          <input type="text" className="form-control"  name="firstName"placeholder="John Doh" required onChange={(e)=>this.changeHandler(e)} />
         </div>
+        <div className="form-group">
+        <label >Fill in your last name</label>
+          <input type="text" className="form-control"  name="lastName"placeholder="John Doh" required onChange={(e)=>this.changeHandler(e)} />
+        </div>
+        <div className={`form-group ${styles.checkBox}`}>
+        <label >Are you working for a company?</label>
+          <input type="checkbox" className="form-control"  name="companyAccount"  onChange={(e)=>this.changeHandler(e)} />
+        </div>
+        {this.state.companyAccount?<Aux>
+          <div className={`form-group ${styles.checkBox}`}>
+        <label >Are you a company owner?
+        </label>
+          <input type="checkbox" className="form-control"  name="role"  onChange={(e)=>this.changeHandler(e)} />
+        </div>
+        <div className="form-group">
+        <label >What is the name of your company?
+        </label>
+          <input type="text" className="form-control"  name="companyName" required onChange={(e)=>this.changeHandler(e)} />
+        </div>
+        </Aux>:null}
         <div className="form-group">
           <label>Fill in your Email address</label>
           <input type="email" className="form-control"  aria-describedby="emailHelp" name="email" placeholder="Enter email" onChange={(e)=>this.changeHandler(e)} required/>

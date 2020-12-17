@@ -56,8 +56,9 @@ class New extends Component {
         this.setState({loading:true})
         axios.get(`https://kovach-proxy-wsb.herokuapp.com/city?city=${this.state.to}`)
         .then(res=>{
-            if(res.data.message === "TypeError [ERR_UNESCAPED_CHARACTERS]: Request path contains unescaped characters"){
-                return this.errorHandler('Please use only latin symbols')
+            console.log(res)
+            if(res.data.error === "invalid city provided"){
+                return this.errorHandler('Invalid city provided. Please use only latin symbols')
             }
             if(res.data.error ){
                 return this.errorHandler(res.data.error)
@@ -66,18 +67,21 @@ class New extends Component {
             this.setState({to:res.data.cities[0]})
             axios.get(`https://kovach-proxy-wsb.herokuapp.com/city?city=${this.state.from}`)
             .then(res=>{
-                if(res.data.message === "TypeError [ERR_UNESCAPED_CHARACTERS]: Request path contains unescaped characters"){
-                    return this.errorHandler('Please use only latin symbols')
+                console.log(res)
+                if(res.data.error === "invalid city provided"){
+                    return this.errorHandler('Invalid city provided. Please use only latin symbols')
                 }
                 if(res.data.error){
                     return this.errorHandler(res.data.error)
                 }
                 this.setState({from:res.data.cities[0]})
+                console.log(this.state.dateStart.getTime())
                 
                 axios.get(`https://kovach-proxy-wsb.herokuapp.com/getflight?orig=${this.state.from.code}&dest=${this.state.to.code}&date=${this.state.dateStart.getTime()}`)
                 .then(res=>{
-                    
+                    console.log(res)
                     if(res.data.code === "ClientError") {
+                        
                         this.setState({to:this.state.to.name,from:this.state.from.name})
                         return this.errorHandler('No flight for this direction')
                     }
@@ -122,13 +126,12 @@ class New extends Component {
 
 
     townProvidedHandler(e){
-        if(e.target.placeholder ==="Origin")return this.setState({from:e.target.value})
-        this.setState({to:e.target.value})
+        this.setState({[e.target.name]:e.target.value});
     }
 
     createTripHandler(){
         this.setState({loading:true})
-        axios.post('https://kovach-db-wsb.herokuapp.com/public/api/trip',
+        axios.post('https://wsb-backend.herokuapp.com/trip',
         {
             id:""+Date.now(),
             to:this.state.to,
@@ -137,10 +140,12 @@ class New extends Component {
             dateEnd:this.state.dateEnd,
             selectedReturnFlight:this.state.selectedReturnFlight,
             selectedFlight:this.state.selectedFlight,
-            status:'undefined',
-            createdBy:JSON.parse(localStorage.getItem('user')).data.data.name
+            status:'undefined'
 
-        })
+        },
+        {headers:{
+            'Authorization': 'Bearer ' +localStorage.getItem("token")
+        }})
     .then(res=>{this.setState({loading:false})
     this.props.history.push('/')
     
@@ -158,9 +163,9 @@ class New extends Component {
                 
         }}>
             <div className={styles.Inputs}>
-            <input type="text" placeholder="Origin" required onChange={(e)=>this.townProvidedHandler(e)}/>
+            <input type="text" placeholder="Origin" name ="to"required onChange={(e)=>this.townProvidedHandler(e)}/>
             <i className="fas fa-plane-departure"></i>
-            <input type="text" placeholder="Destination" required onChange={(e)=>this.townProvidedHandler(e)}/>
+            <input type="text" placeholder="Destination" name="from" required onChange={(e)=>this.townProvidedHandler(e)}/>
             </div>
             <div className={styles.Inputs}>
             <input type="text" placeholder="start of journey" readOnly value={this.state.dateStart?convert(this.state.dateStart):""} onClick={(e)=>this.pickingDateHandler(e)}/>

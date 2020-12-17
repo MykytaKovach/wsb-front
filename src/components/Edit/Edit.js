@@ -30,18 +30,20 @@ class Edit extends Component {
 
     componentDidMount(){
         this.setState({loading:true})
-        axios.get(`https://kovach-db-wsb.herokuapp.com/public/api/trip/${this.props.match.params.tripId}`)
-        
+         
+        axios.get(`https://wsb-backend.herokuapp.com/trip/${this.props.match.params.tripId}`,{headers:{
+            'Authorization': 'Bearer ' +localStorage.getItem("token")
+        }})
         .then(res=>{
             this.setState({loading:false,
-            to:res.data.data.to.name,
-            from:res.data.data.from.name,
-            dateStart:new Date(res.data.data.dateStart),
-            dateEnd:new Date(res.data.data.dateEnd),
-            createdBy:res.data.data.createdBy,
-            created_at:res.data.data.created_at,
-            id:res.data.data.id,
-            status:res.data.data.status})    
+            to:res.data.to.name,
+            from:res.data.from.name,
+            dateStart:new Date(res.data.dateStart),
+            dateEnd:new Date(res.data.dateEnd),
+            createdBy:res.data.createdBy,
+            created_at:res.data.created_at,
+            id:res.data._id,
+            status:res.data.status})    
         })
     }
     errorHandler(msg){
@@ -141,25 +143,28 @@ class Edit extends Component {
         this.setState({to:e.target.value})
     }
 
-    createTripHandler(){
+    updateTripHandler(){
         this.setState({loading:true})
-        axios.put('https://kovach-db-wsb.herokuapp.com/public/api/trip',
+        console.log(this.state.id)
+        console.log(localStorage.getItem("token"))
+        axios.patch(`https://wsb-backend.herokuapp.com/trip/${this.state.id}`,
         {
-            id:""+this.state.id,
             to:this.state.to,
             from:this.state.from,
             dateStart:this.state.dateStart,
             dateEnd:this.state.dateEnd,
             selectedReturnFlight:this.state.selectedReturnFlight,
-            selectedFlight:this.state.selectedFlight,
-            status:this.state.status,
-            createdBy:"Mykyta Kovach"
+            selectedFlight:this.state.selectedFlight
 
-        })
+        },{headers:{
+            'Authorization': 'Bearer ' +localStorage.getItem("token"),
+            'Content-Type': 'application/json'
+        }})
     .then(res=>{this.setState({loading:false})
     this.props.history.push(`/trip/${this.state.id}`)
     
     })
+
         .catch(er=>console.log(er))
     }
 
@@ -173,9 +178,9 @@ class Edit extends Component {
                 
         }}>
             <div className={styles.Inputs}>
-            <input type="text" placeholder="Origin" required value={typeof(this.state.to) === 'object'?this.state.to.name:this.state.to} onChange={(e)=>this.townProvidedHandler(e)}/>
+            <input type="text" placeholder="Origin" required value={typeof(this.state.from) === 'object'?this.state.from.name:this.state.from} onChange={(e)=>this.townProvidedHandler(e)}/>
             <i className="fas fa-plane-departure"></i>
-            <input type="text" placeholder="Destination" required value={typeof(this.state.from) === 'object'?this.state.from.name:this.state.from} onChange={(e)=>this.townProvidedHandler(e)}/>
+            <input type="text" placeholder="Destination" required value={typeof(this.state.to) === 'object'?this.state.to.name:this.state.to} onChange={(e)=>this.townProvidedHandler(e)}/>
             </div>
             <div className={styles.Inputs}>
             <input type="text" placeholder="start of journey" readOnly value={this.state.dateStart?convert(this.state.dateStart):""} onClick={(e)=>this.pickingDateHandler(e)}/>
@@ -206,7 +211,7 @@ class Edit extends Component {
                 </Aux>:<Aux>
                     <p className={styles.Paragraph}>Your Return Flight:</p>
                     <Offer  singleFlight={this.state.selectedReturnFlight} key={this.state.selectedReturnFlight.id} selected={true} onClick={()=>console.log()}/>
-                    <button type="submit" className={"btn btn-primary " +styles.Button} onClick={()=>this.createTripHandler()}>Edit Trip</button>
+                    <button type="submit" className={"btn btn-primary " +styles.Button} onClick={()=>this.updateTripHandler()}>Edit Trip</button>
                 </Aux>}
             </Aux>:<Aux>
             <p className={styles.Paragraph}>Please select your Flight:</p>
