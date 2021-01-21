@@ -1,10 +1,5 @@
 .Body{
-    position: absolute;
-    display: flex;
-    flex-flow: column;
-    
-    align-items: center;
-    justify-content:center;
+
     overflow-x: hidden;
     
     width:100vw;
@@ -15,57 +10,134 @@
     background-attachment: fixed;
 
 }
-.Body{
-    transition:1s
-}
-.Content{
-    position: absolute;
+
+.Header{
+    padding-top: 10px;
     display: flex;
     align-items: center;
-    justify-content:space-around;
-    width: 100%;
-    max-width: 800px;
+    margin:auto;
+    width:90%;
+    justify-content: space-between;
+
+}
+.HeaderBtn{
+    display: flex;
+    align-items: baseline;
+    
+}
+.HeaderBtn p{
+    color:#fff;
+    font-family: lato thin;
+    font-size:1.5rem;
+    margin-right: 10px;
+
+
+}
+.HeaderBtn button{
+    border:#fff dashed 2px;
+    font-family: zilap;
+    font-size: 1.3rem;
+    background: transparent;
+    margin-right: 10px;
+    width: 100px;
+    color:#fff;
+    transition:0.3s;
+}
+.HeaderBtn button:hover{
+background-color: #FFF;
+color:rgba(0,0,0,1);
+
+}
+.Content{
+    margin:auto;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    width: 90%;
 }
 .Text{
-    width:50%;
+    font-family: zilap;
+    width:450px;
     color:white;
+    align-self: flex-start;
+}
+.Text h1{
+    font-size:4rem;
 }
 .Form{
-    width:50%;
+    width:60%;
     flex-flow: column;
     display: flex;
     color:white;
+    align-content: center;
+
     
 }
 .Form p{
     margin-top:3px;
 }
 
-.Form form{
+.Forms{
+    width:50%;
+    margin:0 auto;
     color:black;
-    padding: 10px;
-    background: rgb(227,253,253,0.5);
-    border:#a6e3e9;
+    padding: 30px 15px 15px 15px ;
+    background: rgb(0,0,0,0.5);
+    border:dashed 2px #fff;
+    color:#fff;
     display: flex;
     flex-flow: column;
+    border-radius: 40px;
+    text-align:center;
+    max-width: 400px;
     
+
+
+
+}
+.Forms input{
+    all:unset;
+    height: 40px;
+    border:#333 1px solid;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: start;
+    padding-left:10px;
+}
+.Forms button{
+    background: #0068AF;
+    height: 40px;
+    margin-top: 50px;
+    border-radius: 10px;
+    border: rgb(5, 118, 194) 1px solid;
+    color:#fff;
+    text-transform: uppercase;
+    margin-bottom:10px;
+    transition: 0.3s;
+}
+.Forms button:hover{
+    background: rgb(5, 118, 194) ;
+}
+.FormGroup{
+    text-align: start;
+    margin-top:25px;
+    display:flex;
+    flex-flow:column;
     
 }
+
 .Form form label{
     float:left;
 }
 .Link{
     text-decoration:underline;
-    color:#ea7070;
+    color:#00FD30;
     cursor:pointer;
+    text-transform: uppercase;
+    
 }
-.SomeDiv{
-    display: flex;
-}
-.SomeDiv hr{
-    border-top: 3px solid white;
-    width:40%;
-}
+
 .checkBox {
     display: flex;
     align-items:center;
@@ -116,6 +188,7 @@
         flex-flow:column;
     }
     .Form{
-        width:80%
+        width:100%
     }
+    .Forms{width:100%}
 }

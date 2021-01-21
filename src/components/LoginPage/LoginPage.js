@@ -4,6 +4,8 @@ import Aux from '../../hoc/auxilary'
 import Plane from '../loading/Plane'
 import axios from './../../axios'
 import Error from '../../hoc/error/error'
+import Logo from '../UI/Logo'
+import Carousel from './Carousel/Carousel'
 
 
 class Home extends Component {
@@ -99,33 +101,32 @@ errorHandler(msg){
   },3000)
 }
 render(){
-    let form=<Aux>
-        <button className="btn btn-primary" onClick={(e)=>this.buttonClickHandler(e)}>Log In</button>
-        <div className={styles.SomeDiv}><hr/><p>OR</p><hr/></div>
-        <button className="btn btn-primary" onClick={(e)=>this.buttonClickHandler(e)}>Sign In</button>
-        </Aux>
+    let form=<Carousel/>
     
+    //LOGIN
+
     if(this.state.whatToShow==='Log In'){
-        form = <form onSubmit={(e)=>this.loginHandler(e)}>
-            <h5>Log In an existing account</h5>
+        form = <form className={styles.Forms} onSubmit={(e)=>this.loginHandler(e)}>
+            <h5>LOG IN an existing account</h5>
             {<Error msg = {this.state.error} />}
-        <div className="form-group">
+        <div className={styles.FormGroup}>
           <label>Email address</label>
-          <input type="email" className="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" required onChange={(e)=>this.changeHandler(e)}/>
-          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div className="form-group">
+          <input type="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required onChange={(e)=>this.changeHandler(e)}/>
+          <small id="emailHelp" >We'll never share your email with anyone else.</small>
+          </div>
+          <div className={styles.FormGroup}>
           <label >Password</label>
-          <input type="password" name="password" className="form-control"  placeholder="Password" required onChange={(e)=>this.changeHandler(e)} />
+          <input type="password" name="password"   placeholder="Password" required onChange={(e)=>this.changeHandler(e)} />
+          <small id="emailHelp" >Password has to be at least 8 symbol in lenght and contain capital letter, lowercase letter and a number</small>
         </div>
-        <div className="form-group form-check">
-          
-        </div>
-        <button type="submit" className="btn btn-primary" >Log In</button>
+
+        <button type="submit"  >Log In</button>
         <p>Or you can <span onClick={(e)=>this.buttonClickHandler(e)} className={styles.Link}>Sign In</span> a new account</p>
       </form>
     } else if (this.state.whatToShow==='Sign In'){
-        form = <form onSubmit={(e)=>this.registerHandler(e)}>
+      //SIGNIN
+
+        form = <form className={styles.Forms} onSubmit={(e)=>this.registerHandler(e)}>
             <h5>Create new Account</h5>
             {<Error msg = {this.state.error} />}
             <div className="form-group">
@@ -172,12 +173,22 @@ render(){
     return(<Aux>
        {this.state.loading? <Plane/> : null}
         <div className={styles.Body}>
+        <div className ={styles.Header}>
+          <Logo/>
+        <div className={styles.HeaderBtn}>
+        <button  onClick={(e)=>this.buttonClickHandler(e)}>Log In</button>
+        <p>OR</p>
+        <button  onClick={(e)=>this.buttonClickHandler(e)}>Sign In</button>
+        </div>
+        </div>
         <div className={styles.Content}>
+        
         <div className={styles.Text}>
-        <h1>Trip planner</h1>
+        <h1>PLAN YOUR TRIP</h1>
         <p>Use this application to plan your travels and get them accepted by your boss.</p>
         </div>
         <div className={styles.Form}>
+        
         {form}
         </div>
         </div>
