@@ -163,9 +163,9 @@ class New extends Component {
                 
         }}>
             <div className={styles.Inputs}>
-            <input type="text" placeholder="Origin" name ="to"required onChange={(e)=>this.townProvidedHandler(e)}/>
+            <input type="text" placeholder="Origin" name ="from"required onChange={(e)=>this.townProvidedHandler(e)}/>
             <i className="fas fa-plane-departure"></i>
-            <input type="text" placeholder="Destination" name="from" required onChange={(e)=>this.townProvidedHandler(e)}/>
+            <input type="text" placeholder="Destination" name="to" required onChange={(e)=>this.townProvidedHandler(e)}/>
             </div>
             <div className={styles.Inputs}>
             <input type="text" placeholder="start of journey" readOnly value={this.state.dateStart?convert(this.state.dateStart):""} onClick={(e)=>this.pickingDateHandler(e)}/>

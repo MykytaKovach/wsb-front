@@ -2,6 +2,7 @@ import React ,{Component}from 'react'
 import Aux from '../../hoc/auxilary'
 import styles from './Header.module.css'
 import {NavLink} from 'react-router-dom'
+import Logo from '../UI/Logo'
 
 class Header extends Component {
     state={
@@ -12,6 +13,7 @@ class Header extends Component {
     }
     toggleSideMenuHandler(){
         this.setState({burger:!this.state.burger})
+        console.log('asdsad')
         
     }
     render(){
@@ -33,8 +35,7 @@ class Header extends Component {
             </li>
       </ul>
 
-          let sideMenu=<div  className={styles.SideNav} style={{width:this.state.burger?'250px':'0px'}}>
-          <p className={styles.BtnClose} onClick={()=>this.toggleSideMenuHandler()}>&times;</p>
+          let sideMenu=<div  className={styles.SideNav} style={{width:this.state.burger?'100%':'0px'}}>
           <NavLink to ="/" onClick={()=>this.toggleSideMenuHandler()} 
           activeClassName={styles.Active} exact>Home</NavLink>
           <NavLink to ="/about" onClick={()=>this.toggleSideMenuHandler()}
@@ -49,9 +50,7 @@ class Header extends Component {
           <Aux>
     <div className={styles.Header}>
       <div className={styles.Heading}>
-        <div className={styles.Branding}>
-          <h1><span className={styles.Highlight}>Trip</span> Planner</h1>
-        </div>
+        <Logo/>
         <nav>
           {menu}
           <span className={styles.OpenSlide}>

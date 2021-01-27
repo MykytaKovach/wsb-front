@@ -22,9 +22,11 @@ class Home extends Component {
         })
         .then(res=>{
             console.log(res.data)
+            console.log(res.data.length?'+':"-")
+
             this.setState(
                 {
-                    trips:res.data,
+                    trips:res.data.reverse(),
                     loading:false
                 })
             
@@ -38,16 +40,19 @@ class Home extends Component {
             {this.state.trips.map(trip=>
             <Trip flight={trip} key={trip.dateStart}/>)}
         </div>:null
+        let text = this.state.trips&&this.state.trips.length?"Your Trips":"You dont have any trips yet"
+        let box = this.state.trips&&this.state.trips.length?<div className={styles.Box}>
+        <hr/>
+    {trips}
+    </div>:null
+        
         return(
             <Aux>
                  
              {this.state.loading?<Plane/>:null}
             <div className={styles.Home}>
-            <p className={styles.Title}>Trips</p> 
-            <div className={styles.Box}>
-                <hr/>
-            {trips}
-            </div>
+        <p className={styles.Title}>{text}</p> 
+            {box}
             <NavLink to="/new"><div className={styles.Button}><i className="fas fa-plus"></i></div></NavLink>
             </div>
             </Aux>

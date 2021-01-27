@@ -75,6 +75,7 @@ registerHandler(e){
       lastName: this.state.lastName,
   
     }
+
   
   axios.post('https://wsb-backend.herokuapp.com/users',data).then(res=>{
     console.log(res)
@@ -89,7 +90,7 @@ registerHandler(e){
     
     }).catch(er=>{
       console.log(er.response.data)
-      return this.errorHandler(er.response.data.message)
+      return this.errorHandler(er.response.data.errmsg|| er.response.data.message)
     })
 
 
@@ -98,7 +99,7 @@ errorHandler(msg){
   this.setState({error: msg,loading:false})
   setTimeout(()=>{
       this.setState({error:undefined})
-  },3000)
+  },5000)
 }
 render(){
     let form=<Carousel/>
@@ -117,7 +118,7 @@ render(){
           <div className={styles.FormGroup}>
           <label >Password</label>
           <input type="password" name="password"   placeholder="Password" required onChange={(e)=>this.changeHandler(e)} />
-          <small id="emailHelp" >Password has to be at least 8 symbol in lenght and contain capital letter, lowercase letter and a number</small>
+          
         </div>
 
         <button type="submit"  >Log In</button>
@@ -129,44 +130,45 @@ render(){
         form = <form className={styles.Forms} onSubmit={(e)=>this.registerHandler(e)}>
             <h5>Create new Account</h5>
             {<Error msg = {this.state.error} />}
-            <div className="form-group">
+            <div className={styles.FormGroup}>
             <label >Fill in your first name</label>
-          <input type="text" className="form-control"  name="firstName"placeholder="John Doh" required onChange={(e)=>this.changeHandler(e)} />
+          <input type="text"   name="firstName"placeholder="John Doh" required onChange={(e)=>this.changeHandler(e)} />
         </div>
-        <div className="form-group">
+        <div className={styles.FormGroup}>
         <label >Fill in your last name</label>
-          <input type="text" className="form-control"  name="lastName"placeholder="John Doh" required onChange={(e)=>this.changeHandler(e)} />
+          <input type="text"   name="lastName"placeholder="John Doh" required onChange={(e)=>this.changeHandler(e)} />
         </div>
-        <div className={`form-group ${styles.checkBox}`}>
+        <div className={` ${styles.checkBox}`}>
         <label >Are you working for a company?</label>
-          <input type="checkbox" className="form-control"  name="companyAccount"  onChange={(e)=>this.changeHandler(e)} />
+          <input type="checkbox"   name="companyAccount"  onChange={(e)=>this.changeHandler(e)} />
         </div>
         {this.state.companyAccount?<Aux>
-          <div className={`form-group ${styles.checkBox}`}>
+          <div className={`${styles.checkBox}`}>
         <label >Are you a company owner?
         </label>
-          <input type="checkbox" className="form-control"  name="role"  onChange={(e)=>this.changeHandler(e)} />
+          <input type="checkbox"  name="role"  onChange={(e)=>this.changeHandler(e)} />
         </div>
-        <div className="form-group">
+        <div className={styles.FormGroup}>
         <label >What is the name of your company?
         </label>
-          <input type="text" className="form-control"  name="companyName" required onChange={(e)=>this.changeHandler(e)} />
+          <input type="text"   name="companyName" required onChange={(e)=>this.changeHandler(e)} />
         </div>
         </Aux>:null}
-        <div className="form-group">
+        <div className={styles.FormGroup}>
           <label>Fill in your Email address</label>
-          <input type="email" className="form-control"  aria-describedby="emailHelp" name="email" placeholder="Enter email" onChange={(e)=>this.changeHandler(e)} required/>
-          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+          <input type="email" aria-describedby="emailHelp" name="email" placeholder="Enter email" onChange={(e)=>this.changeHandler(e)} required/>
+          <small id="emailHelp" >We'll never share your email with anyone else.</small>
         </div>
-        <div className="form-group">
+        <div className={styles.FormGroup}>
           <label >Fill in your Password</label>
-          <input type="password" className="form-control" name="password" placeholder="Password" required  onChange={(e)=>this.changeHandler(e)}/>
+          <input type="password"  name="password" placeholder="Password" required  onChange={(e)=>this.changeHandler(e)}/>
+          <small id="emailHelp" >Password has to be at least 8 symbol in lenght and contain capital letter, lowercase letter and a number</small>
         </div>
-        <div className="form-group form-check">
+        <div className=" form-check">
           
         </div>
-        <button type="submit" className="btn btn-primary" >Sign In</button>
-        <p>Or you can <span onClick={(e)=>this.buttonClickHandler(e)} className={styles.Link}>Log In</span> if you already have one</p>
+        <button type="submit"  >Sign In</button>
+        <p>Or you can <span onClick={(e)=>this.buttonClickHandler(e)} className={styles.Link}>Log In</span> if you already have an account</p>
       </form>
     }
 

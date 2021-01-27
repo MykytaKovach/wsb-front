@@ -1,4 +1,5 @@
 .Box {
+
         top:3vh;
         position:relative;
         display:flex;
@@ -8,7 +9,7 @@
         max-width: 800px;
         background: #F9F9F9;
       padding: 25px;
-      margin: 10px 0;
+      margin: 80px 0;
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
       transition: 0.5s;
       
@@ -54,12 +55,12 @@
 .Me{
     margin: auto;
     width:100%;
-    background:url('../../assets/img/Plane.jpg');
+    background:url('../../assets/img/background.jpg');
     background-attachment: fixed;
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height:90vh;
+    min-height:100vh;
     display:flex;
     align-items: center;
     flex-flow:column;
