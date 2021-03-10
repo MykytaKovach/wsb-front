@@ -8,6 +8,7 @@ import Plane from '../loading/Plane'
 import Offer from './planeOffer/planeOffer'
 import Weather from './weather/weather'
 import Error from './../../hoc/error/error'
+import City from '../UI/city/City'
 
 
 class New extends Component {
@@ -202,14 +203,21 @@ class New extends Component {
             <p className={styles.Paragraph}>Please select your Flight:</p>
         {this.state.flights.data.map(flight=><Offer singleFlight={flight} key={flight.id} selected={this.state.selectedFlight? this.state.selectedFlight.id === flight.id:false} onClick={()=>this.selectedFlightHandler(flight)}/>)}
             </Aux>}</div>:null
+            
         return(
             <Aux>
                 {this.state.loading? <Plane/> : null}
                 {<Error msg = {this.state.error} style={{height: this.state.error? 'auto':"0px",transition:'1s'}}/>}
                 <div className={styles.Forms}>
-                <p className={styles.Title}>New Trip</p>    
+                <p className={styles.Title}>New Trip</p>  
+                <div>
+                {this.state.secondStage?<City town={this.state.from.name}/>:null}
+                
                 {form}
                 {Flights}
+                {this.state.secondStage?<City town={this.state.to.name} />:null}
+                
+                </div>  
                 </div>
             </Aux>
         )

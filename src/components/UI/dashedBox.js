@@ -8,11 +8,11 @@ const dashedBox = ({img,size,background}) => {
         backgroundSize: "cover",
         backgroundPosition:"center",
         width:size,
+        height:size,
         borderRadius:'10%'
     }
     const stylingBg={
         paddingBottom:'100%',
-        width:'100%',
         backgroundColor:background?'rgba(255,255,255,0.5)':null,
         borderRadius:'10%',
         border:'#fff dashed 2px',

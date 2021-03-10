@@ -7,6 +7,9 @@ import Weather from '../New/weather/weather'
 import Offer from '../New/planeOffer/planeOffer'
 import Plane from '../loading/Plane'
 import axios from '../../axios'
+import City from '../UI/city/City'
+import RegionMap from '../UI/Map/RegionMap'
+import last from '../../last'
 class View extends Component{
     state={
         id:undefined,
@@ -20,7 +23,8 @@ class View extends Component{
         createdBy:undefined,
         created_at:undefined,
         status:undefined,
-        role:''
+        role:'',
+        showMap:false
 
     }
     
@@ -33,7 +37,6 @@ class View extends Component{
             'Authorization': 'Bearer ' +localStorage.getItem("token")
         }})
         .then(res=>{
-            console.log(res)
             this.setState({loading:false,
             to:res.data.to,
             from:res.data.from,
@@ -60,6 +63,12 @@ class View extends Component{
             this.props.history.push('/')})
     }
 
+    showMapHandler(){
+        this.setState({showMap:true})
+    }
+    closeMapHandler(){
+        this.setState({showMap:false})
+    }
     manageStatusHandler(e){
         e.persist()
         this.setState({loading:true})
@@ -96,23 +105,30 @@ class View extends Component{
             <Offer  singleFlight={this.state.selectedFlight} key={this.state.selectedFlight.id} selected={true} onClick={()=>console.log()}/>
             <p className={styles.Status}>Your Return Flight:</p>
             <Offer  singleFlight={this.state.selectedReturnFlight} key={this.state.selectedReturnFlight.id} selected={true} onClick={()=>console.log()}/>
+            <button type="submit" className={"btn btn-primary " +styles.Button} onClick ={()=>this.showMapHandler()}>See on map</button>
             {status}
            {form}
             <button type="submit" className={"btn btn-primary "+ styles.Reject+" " +styles.Delete } onClick={(e)=>this.deleteHandler(e)}>Delete</button>
             </div></Aux>:null
         return(
             <Aux>
+            
             {this.state.loading? <Plane/> : null}
             
             <div className={styles.Forms}>
-            <p className={styles.Title}>Your Trip </p>
-                
-                    
+            {this.state.showMap?<RegionMap 
+                                originDate={this.state.selectedFlight.itineraries[0].segments[0].departure.at} 
+                                destinationDate={last(this.state.selectedFlight.itineraries[0].segments).arrival.at} 
+                                to={this.state.to} from={this.state.from} 
+                                click={()=>this.closeMapHandler()}/>:null}
+            <p className={styles.Title}  style={{display:this.state.showMap?"none":"block"}}>Your Trip </p>
+            <div style={{display:this.state.showMap?"none":"flex"}}>
+            {this.state.from?<City style={{position:'sticky'}} town={this.state.from.name}/>:null}
                     {Flights}
-                    
-        
-
+            {this.state.to?<City town={this.state.to.name} />:null}
             </div>
+            </div>
+            
             
 
             
