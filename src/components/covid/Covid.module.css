@@ -1,0 +1,101 @@
+.Covid{
+    background: url('../../assets/img/covid19.jpg') center no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    
+}
+
+.Content{
+    width: 95%;
+    max-width: 800px;
+    margin: auto;
+    padding-top: 150px;
+    color: #ffffff;
+}
+.Content h1{
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+.Content p{
+    font-size: 1.5rem;
+}
+.Content h2{
+    text-transform: uppercase;
+    margin-top: 30px;
+}
+.Content form{
+    display: flex;
+    align-content: stretch;
+    width: 100%;
+    height: 60px;
+}
+.Content form input{
+    all:unset;
+    background-color:#F2E1E1 ;
+    border:rgb(236, 164, 164) 1px solid;
+    color:#000000;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    width: 85%;
+}
+.Content form input:focus{
+    border:rgb(214, 92, 92) 1px solid;
+}
+.Content form button{
+    background: #E76C6C;
+    border:rgb(236, 164, 164) 1px solid;
+    color: #ffffff;
+    font-size: 1.2rem;
+    width: 15%;
+}
+.Content form button:hover{
+    background: rgb(219, 78, 78);
+}
+.Data{
+    width: 100%;
+    margin-top: 10px;
+    background: #c4c4c4;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    text-transform: uppercase;
+    color:#3f3f3f;
+}
+.SingleData{
+    width:50%;
+    display: flex;
+    margin:10px 0;
+}
+.Text p{
+    margin: 0;
+    text-align: left;
+}
+.Icon{
+    width: 20%;
+    font-size: 3rem;
+    margin:0 15px;
+}
+
+
+@media(max-width:530px){
+    .Data{
+        flex-flow: column;
+    }
+    .SingleData{
+        width: 100%;
+        margin: 5px auto;
+    }
+    .Content form{
+        flex-flow: column;
+        justify-content: center;
+        height: auto;
+
+    }
+    .Content form input{
+        box-sizing: border-box;
+        width:100%;
+    }
+    .Content form button{
+        width:100%;
+    }
+}

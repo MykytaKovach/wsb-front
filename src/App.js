@@ -8,6 +8,7 @@ import New from './components/New/New'
 import LoginPage from './components/LoginPage/LoginPage'
 import View from './components/View/View'
 import Edit from './components/Edit/Edit'
+import Covid from './components/covid/Covid'
 import './App.css';
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
         <Route path="/about" component={About}/>
         <Route path="/me" component={Me}/>
         <Route path="/new" component={New}/>
+        <Route path ="/covid" component={Covid}/>
         <Route path ="/trip/:tripId" component={View}/>
         <Route path ="/edit/:tripId" component={Edit}/>
       </div>:<LoginPage logedIn={()=>this.loginedHandler()}/>}
