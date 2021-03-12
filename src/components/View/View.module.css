@@ -8,7 +8,7 @@
     font-weight:normal;
     font-size:5rem;
     color:	#fff;
-    margin-top:40px;
+    margin-top:60px;
     margin-bottom:5px;
 }
 .Forms{
@@ -108,6 +108,11 @@
 }
 
 
+@media(max-width:1100px){
+    .Form{
+        max-width: 400px;
+    }
+}
 
 @media(max-width:500px){
     .Form{

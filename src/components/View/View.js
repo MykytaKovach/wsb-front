@@ -123,7 +123,7 @@ class View extends Component{
                                 click={()=>this.closeMapHandler()}/>:null}
             <p className={styles.Title}  style={{display:this.state.showMap?"none":"block"}}>Your Trip </p>
             <div style={{display:this.state.showMap?"none":"flex"}}>
-            {this.state.from?<City style={{position:'sticky'}} town={this.state.from.name}/>:null}
+            {this.state.from?<City town={this.state.from.name}/>:null}
                     {Flights}
             {this.state.to?<City town={this.state.to.name} />:null}
             </div>

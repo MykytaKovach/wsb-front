@@ -12,29 +12,15 @@ const Covid = () => {
         }
         function getData(e){
             e.preventDefault()
-            let obj = {}
-            let code = ''
-            axios.get(`https://kovach-proxy-wsb.herokuapp.com/city?city=${country}`)
+            axios.get(`https://api.covid19api.com/total/country/${country}`)
             .then(res=>{
-                code = res.data.cities[0].country
-                axios.get(`https://covid19-api.org/api/status/${code}`)
-                .then(res=>{
-                    obj={...res.data}
-                    // console.log(`https://covid19-api.org/api/diff/${code}`)
-                    // axios.get(`https://covid19-api.org/api/diff/${code.toLowerCase()}`)})
-                    // .then(res=>{
-                    //     console.log(res)
-                    //     // obj={...obj,...res.data}
-                    //  
-                       setData(obj)
-                     })
+                console.log(res.data.pop())
+                setData(res.data.pop())
             })
-            .catch(e=>console.log(e))
-            
-            
         }
 
-        let datael=data.country?<div className={styles.Data}>
+        let datael=data.Confirmed?<div className={styles.Data}>
+            <div className ={styles.Country}><h2>{data.Country}</h2></div>
         <div className={styles.SingleData}>
                 <div className={styles.Icon}><i className="fas fa-disease"></i></div>
                 <div className={styles.Text}>
@@ -42,7 +28,7 @@ const Covid = () => {
                         confirmed cases
                     </p>
                     <p>
-                        {data.cases}
+                        {data.Confirmed}
                     </p>
                 </div>
             </div>
@@ -53,7 +39,7 @@ const Covid = () => {
                         lethal cases
                     </p>
                     <p>
-                        {data.deaths}
+                        {data.Deaths}
                     </p>
                 </div>
             </div>
@@ -64,40 +50,18 @@ const Covid = () => {
                         recovered
                     </p>
                     <p>
-                        {data.recovered}
+                        {data.Recovered}
                     </p>
                 </div>
             </div>
             <div className={styles.SingleData}>
-                <div className={styles.Icon}><i className="fas fa-sort-down"></i></div>
+                <div className={styles.Icon}><i className="fas fa-calendar-day"></i></div>
                 <div className={styles.Text}>
                     <p>
-                        new cases
+                        Active cases
                     </p>
                     <p>
-                        {data.new_cases}
-                    </p>
-                </div>
-            </div>
-            <div className={styles.SingleData}>
-                <div className={styles.Icon}><i className="fas fa-sort-up"></i></div>
-                <div className={styles.Text}>
-                    <p>
-                        new recovered
-                    </p>
-                    <p>
-                        {data.new_recovered}
-                    </p>
-                </div>
-            </div>
-            <div className={styles.SingleData}>
-                <div className={styles.Icon}><i className="fas fa-times"></i></div>
-                <div className={styles.Text}>
-                    <p>
-                        new lethal cases
-                    </p>
-                    <p>
-                        {data.new_deaths}
+                        {data.Active}
                     </p>
                 </div>
             </div>

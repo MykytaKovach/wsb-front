@@ -61,6 +61,9 @@
     text-transform: uppercase;
     color:#3f3f3f;
 }
+.Country{
+    width:100%
+}
 .SingleData{
     width:50%;
     display: flex;

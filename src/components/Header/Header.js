@@ -23,6 +23,10 @@ class Header extends Component {
             exact 
             activeClassName={styles.Active}
             >Home</NavLink></li>
+            <li>
+            <NavLink to ="/covid"
+            activeClassName={styles.Active}
+            >COVID</NavLink></li>
         <li>
             <NavLink to ="/about" 
                     activeClassName={styles.Active}
@@ -38,6 +42,8 @@ class Header extends Component {
           let sideMenu=<div  className={styles.SideNav} style={{width:this.state.burger?'100%':'0px'}}>
           <NavLink to ="/" onClick={()=>this.toggleSideMenuHandler()} 
           activeClassName={styles.Active} exact>Home</NavLink>
+          <NavLink to ="/covid" onClick={()=>this.toggleSideMenuHandler()}
+           activeClassName={styles.Active}>covid</NavLink>
           <NavLink to ="/about" onClick={()=>this.toggleSideMenuHandler()}
            activeClassName={styles.Active}>About</NavLink>
           <NavLink to ="/me" onClick={()=>this.toggleSideMenuHandler()} 

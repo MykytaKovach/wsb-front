@@ -110,7 +110,7 @@
   /* Media Queries */
   
   
-  @media(max-width:568px){
+  @media(max-width:800px){
     .NavbarNav{display:none !important}
     nav{
       width:50px;
@@ -122,7 +122,7 @@
     
   }
   
-  @media(min-width:568px){
+  @media(min-width:800px){
     .OpenSlide{display:none}
     .Header a:hover{
       color:rgba(0,0,0,1);
